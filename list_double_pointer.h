@@ -8,7 +8,6 @@
 */
 /* Tanggal   : 27 November 2022 */
 /***********************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,6 +15,7 @@
 #define info(P)  (P)->info
 #define next(P)  (P)->next
 #define prev(P)  (P)->prev
+#define isOn(P)  (P)->isOn
 #define First(L) (L).First
 
 typedef enum{false,true} boolean;
@@ -25,6 +25,7 @@ typedef struct tElmtList {
     infotype info;
     address next;
     address prev;
+    boolean isOn;
 } ElmtList;
 
 typedef struct {
