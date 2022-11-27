@@ -9,6 +9,7 @@
 /* Tanggal   : 27 November 2022 */
 /***********************************/
 #include "list_double_pointer.h"
+#include "browser.h"
 
 
 /* ----- Test List Kosong ----- */
@@ -50,6 +51,7 @@ address Alokasi (infotype X){
             info(P) = X;
             next(P) = Nil;
             prev(P) = Nil;
+            isOn(P) = false;
         }
         return P;
 }
@@ -79,10 +81,12 @@ void InsertFirst (List *L, address P) {
         if (ListEmpty(*L)) {
             First(*L) = P;
         } else {
+            SetOffAll(L);
             next(P) = First(*L);
             prev(First(*L)) = P;
             First(*L) = P;
         }
+        SetOn(&First(*L));
 }
 
 void InsertAfter (List *L, address P, address Prec) {
@@ -212,7 +216,11 @@ void PrintInfo (List L) {
     } else {
         P = First(L);
         do {
-            printf("\t%d", info(P));
+            if (isOn(P)) {
+                printf("\t[%d]", info(P));
+            } else {
+                printf("\t%d", info(P));
+            }
             P = next(P);
         } while (P != Nil);
         printf("\n");
