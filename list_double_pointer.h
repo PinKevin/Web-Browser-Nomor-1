@@ -19,7 +19,7 @@
 #define First(L) (L).First
 
 typedef enum{false,true} boolean;
-typedef int infotype;
+typedef char* infotype;
 typedef struct tElmtList *address;
 typedef struct tElmtList {
     infotype info;
