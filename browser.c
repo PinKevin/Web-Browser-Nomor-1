@@ -80,4 +80,22 @@ void ToPrevPage (List *L) {
             }
         }
 }
+
+void MenuPage() {
+
+    printf("=============Selamat datang di Web Kecil-Kecilan=============\n");
+    printf("\nCommand tersedia: \n");
+    printf("a : Masukkan halaman di kiri\n");
+    printf("b : Masukkan halaman di kanan\n");
+//    printf("c : Insert After\n");
+    printf("d : Hapus halaman terkiri\n");
+    printf("e : Hapus halaman terkanan\n");
+    printf("f : Hapus halaman setelah halaman aktif\n");
+    printf("g : Pindah ke halaman selanjutnya\n");
+    printf("h : Pindah ke halaman sebelumnya\n");
+    printf("l : STOP\n");
+
+    printf("\nWeb yang sedang aktif :\n");
+}
+
 #endif // browser_C
