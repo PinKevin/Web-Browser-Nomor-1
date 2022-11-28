@@ -28,4 +28,6 @@ void ToNextPage (List *L);
 void ToPrevPage (List *L);
 /* Berpindah ke halaman sebelumnya */
 
+void MenuPage();
+
 #endif // browser_H
