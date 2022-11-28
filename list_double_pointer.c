@@ -116,6 +116,8 @@ void InsertLast (List *L, address P) {
         if (ListEmpty(*L)) {
             InsertFirst(L, P);
         } else {
+            SetOffAll(L);
+
             Last = First(*L);
             while (next(Last) != Nil) {
                 Last = next(Last);
@@ -123,80 +125,111 @@ void InsertLast (List *L, address P) {
 
             next(Last) = P;
             prev(P) = Last;
+
+            SetOn(&P);
         }
 }
 
 
 /* Penghapusan Sebuah Elemen */
-void DelFirst (List *L, address *P) {
-/* I.S. : List tidak kosong
+void DelFirst (List *L) {
+/* I.S. : List sembarang
    F.S. : P adalah alamat elemen pertama list sebelum penghapusan
           Elemen list berkurang satu (mungkin menjadi kosong)
           First element yang baru adalah suksesor elemen pertama yang
           lama */
 
     // kamus lokal
-        address Last;
+        address P;
 
     // algoritma
-        if (NbElmt(*L) != 1) {
-            *P = First(*L);
-            First(*L) = next(First(*L));
-            prev(First(*L)) = Nil;
-            next(*P) = Nil;
-        } else {
-            *P = First(*L);
-            First(*L) = Nil;
-        }
+        if (!ListEmpty(*L)) {
+            if (NbElmt(*L) != 1) {
+                P = First(*L);
+                First(*L) = next(First(*L));
+                prev(First(*L)) = Nil;
+                next(P) = Nil;
 
+                Dealokasi(&P);
+                SetOffAll(L);
+                SetOn(&First(*L));
+
+            } else {
+                P = First(*L);
+                First(*L) = Nil;
+                Dealokasi(&P);
+            }
+        }
 }
 
-void DelLast (List *L, address *P) {
-/* I.S. : List tidak kosong
+void DelLast (List *L) {
+/* I.S. : List sembarang
    F.S. : P adalah alamat elemen terakhir list sebelum penghapusan
           Elemen list berkurang satu (mungkin menjadi kosong)
           Last element baru adalah predesesor elemen pertama yang
           lama, jika ada */
 
     // kamus lokal
-        address Last;
-        address PrecLast;
+        address Last, PrecLast, P;
 
     // algoritma
-        Last = First(*L);
-        PrecLast = Nil;
+        if (!ListEmpty(*L)) {
+            SetOffAll(L);
 
-        while (next(Last) != Nil) {
-            PrecLast = Last;
-            Last = next(Last);
-        }
+            Last = First(*L);
+            PrecLast = Nil;
 
-        *P = Last;
-        prev(*P) = Nil;
+            while (next(Last) != Nil) {
+                PrecLast = Last;
+                Last = next(Last);
+            }
 
-        if (PrecLast == Nil) {
-            First(*L) = Nil;
-        } else {
-            next(PrecLast) = Nil;
+            P = Last;
+            prev(P) = Nil;
+
+            if (PrecLast == Nil) {
+                First(*L) = Nil;
+                Dealokasi(&P);
+
+            } else {
+                next(PrecLast) = Nil;
+                Last = PrecLast;
+                SetOn(&Last);
+                Dealokasi(&P);
+            }
         }
 }
 
-void DelAfter (List *L, address *Pdel, address Prec) {
+void DelAfter (List *L) {
 /* I.S. : List tidak kosong. Prec adalah anggota list L.
    F.S. : Menghapus Next(Prec) :
           Pdel adalah alamat elemen list yang dihapus*/
 
     // kamus lokal
-
+        address Prec, Pdel;
 
     // algoritma
-        *Pdel = next(Prec);
+        if (!ListEmpty(*L)) {
+            Prec = First(*L);
+            while (!isOn(Prec)) {
+                Prec = next(Prec);
+            }
 
-        next(Prec) = next(next(Prec));
-        prev(next(Prec)) = Prec;
+            if (next(Prec) != Nil) {
+                if (next(next(Prec)) == Nil) {
+                    DelLast(L);
+                } else {
+                    Pdel = next(Prec);
 
-        next(*Pdel) = Nil;
-        prev(*Pdel) = Nil;
+                    next(Prec) = next(next(Prec));
+                    prev(next(Prec)) = Prec;
+
+                    next(Pdel) = Nil;
+                    prev(Pdel) = Nil;
+                    Dealokasi(&Pdel);
+                }
+            }
+        }
 }
 
 
@@ -212,14 +245,14 @@ void PrintInfo (List L) {
 
     // algoritma
     if (ListEmpty(L)) {
-        printf("\tList kosong\n");
+        printf("\tBelum ada web yang dibuka!\n");
     } else {
         P = First(L);
         do {
             if (isOn(P)) {
-                printf("\t[%d]", info(P));
+                printf("\t[%s]", info(P));
             } else {
-                printf("\t%d", info(P));
+                printf("\t%s", info(P));
             }
             P = next(P);
         } while (P != Nil);
