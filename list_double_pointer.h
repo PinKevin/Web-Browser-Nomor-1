@@ -76,24 +76,23 @@ void InsertLast (List *L, address P);
 
 
 /* Penghapusan Sebuah Elemen */
-void DelFirst (List *L, address *P);
-/* I.S. : List tidak kosong
+void DelFirst (List *L);
+/* I.S. : List sembarang
    F.S. : P adalah alamat elemen pertama list sebelum penghapusan
           Elemen list berkurang satu (mungkin menjadi kosong)
           First element yang baru adalah suksesor elemen pertama yang
           lama */
 
-void DelLast (List *L, address *P);
-/* I.S. : List tidak kosong
+void DelLast (List *L);
+/* I.S. : List sembarang
    F.S. : P adalah alamat elemen terakhir list sebelum penghapusan
           Elemen list berkurang satu (mungkin menjadi kosong)
           Last element baru adalah predesesor elemen pertama yang
           lama, jika ada */
 
-void DelAfter (List *L, address * Pdel, address Prec);
-/* I.S. : List tidak kosong. Prec adalah anggota list L.
-   F.S. : Menghapus Next(Prec) :
-          Pdel adalah alamat elemen list yang dihapus*/
+void DelAfter (List *L);
+/* I.S. : List sembarang.
+   F.S. : Menghapus Next(Prec)*/
 
 
 /* Proses Semua Elemen List */
