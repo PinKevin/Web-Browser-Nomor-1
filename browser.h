@@ -14,20 +14,27 @@
 
 
 void SetOn (address *P);
-/* Menyetel situs aktif */
+/* I.S. : P terdefinisi
+   F.S. : situs address P disetel menjadi aktif*/
 
 void SetOff (address *P);
-/* Menyetel situs nonaktif */
+/* I.S. : P terdefinisi
+   F.S. : situs address P disetel menjadi nonaktif*/
 
 void SetOffAll (List *L);
-/* Menyetel semua situs nonaktif */
+/* I.S. : List tidak kosong
+   F.S. : semua situs disetel menjadi nonaktif*/
 
 void ToNextPage (List *L);
-/* Berpindah ke halaman selanjutnya */
+/* I.S. : List tidak kosong
+   F.S. : berpindah ke halaman selanjutnya*/
 
 void ToPrevPage (List *L);
-/* Berpindah ke halaman sebelumnya */
+/* I.S. : List tidak kosong
+   F.S. : berpindah ke halaman sebelumnya*/
 
 void MenuPage();
+/* I.S. : Tidak terdefinisi 
+   F.S. : Tampilan menu opsi yang bisa dilakukan dalam program*/
 
 #endif // browser_H
