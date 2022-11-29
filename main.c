@@ -30,7 +30,7 @@ int main() {
     CreateList(&A);
 
     while (on){
-        system("cls");
+        system("cls"); // Clear Screen
         MenuPage();
         PrintInfo(A);
         printf("\nMasukkan perintah: ");
