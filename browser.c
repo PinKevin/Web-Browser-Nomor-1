@@ -13,7 +13,8 @@
 
 
 void SetOn (address *P) {
-/* Menyetel situs aktif */
+/* I.S. : P terdefinisi
+   F.S. : situs address P disetel menjadi aktif*/
     // kamus lokal
 
     // algoritma
@@ -21,7 +22,8 @@ void SetOn (address *P) {
 }
 
 void SetOff (address *P) {
-/* Menyetel situs nonaktif */
+/* I.S. : List tidak kosong
+   F.S. : situs address P disetel menjadi nonaktif*/
     // kamus lokal
 
     // algoritma
@@ -29,7 +31,8 @@ void SetOff (address *P) {
 }
 
 void SetOffAll (List *L) {
-/* Menyetel semua situs nonaktif */
+/* I.S. : List tidak kosong
+   F.S. : semua situs disetel menjadi nonaktif*/
     // kamus lokal
         address P;
 
@@ -44,7 +47,8 @@ void SetOffAll (List *L) {
 }
 
 void ToNextPage (List *L) {
-/* Berpindah ke halaman selanjutnya */
+/* I.S. : List tidak kosong
+   F.S. : berpindah ke halaman selanjutnya*/
     // kamus lokal
         address P;
 
@@ -63,7 +67,8 @@ void ToNextPage (List *L) {
 }
 
 void ToPrevPage (List *L) {
-/* Berpindah ke halaman sebelumnya */
+/* I.S. : List tidak kosong
+   F.S. : berpindah ke halaman sebelumnya*/
     // kamus lokal
         address P;
 
@@ -82,7 +87,9 @@ void ToPrevPage (List *L) {
 }
 
 void MenuPage() {
-
+/* I.S. : Tidak terdefinisi 
+   F.S. : Tampilan menu opsi yang bisa dilakukan dalam program*/
+  
     printf("=============Selamat datang di Web Kecil-Kecilan=============\n");
     printf("\nCommand tersedia: \n");
     printf("a : Masukkan halaman di kiri\n");
